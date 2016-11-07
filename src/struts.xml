@@ -4,9 +4,8 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
+	<constant name="struts.custom.i18n.resources" value="mess"/>
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
 
     <package name="crazyit" namespace="/" extends="struts-default">
         <action name="*">
