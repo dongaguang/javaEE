@@ -31,4 +31,9 @@
   	<servlet-name>firstServlet</servlet-name>
   	<url-pattern>/first</url-pattern>
   </servlet-mapping>
+  
+  <!-- 配置listener -->
+  <listener>
+  	<listener-class>first.Listen</listener-class>
+  </listener>
 </web-app>
