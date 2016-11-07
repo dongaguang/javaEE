@@ -8,6 +8,17 @@
     <param-value>enen</param-value>
   </context-param>
   
+  <!-- 定义Struts2的核心Filter -->
+  <filter>
+  	<filter-name>struts2</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <!-- 让Struts2的核心Filter拦截所有请求 -->
+  <filter-mapping>
+  	<filter-name>struts2</filter-name>
+	<url-pattern>/*</url-pattern>  	
+  </filter-mapping>
+  
   <!-- 配置Filter(过滤器) -->
   <filter>
   	<filter-name>firstFilter</filter-name>
