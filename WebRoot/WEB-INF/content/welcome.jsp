@@ -17,10 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
   </head>
   <body>
-  	<form action="login">
-  		<input type="text" name="userName"/>
-  		<input type="text" name="passWord"/>
-  		<input type="submit" value="login"/>
-  	</form>
+	欢迎，<%=session.getAttribute("user") %>
   </body>
 </html>

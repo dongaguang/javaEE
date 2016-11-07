@@ -7,9 +7,14 @@
 	<constant name="struts.custom.i18n.resources" value="mess"/>
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
 
-    <package name="crazyit" namespace="/" extends="struts-default">
-        <action name="*">
-        	<result>/WEB-INF/content/{1}.jsp</result>
-        </action>
+   <package name="struts" namespace="/" extends="struts-default">
+   		<action name="*">
+   			<result>/WEB-INF/content/{1}.jsp</result>
+   		</action>
+    	<action name="login" class="struts.LoginAction">
+    		<result name="success">/WEB-INF/content/welcome.jsp</result>
+    		<result name="error">/WEB-INF/content/error.jsp</result>
+    	</action>
     </package>
+    
 </struts>
