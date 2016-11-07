@@ -7,4 +7,24 @@
     <param-name>haha</param-name>
     <param-value>enen</param-value>
   </context-param>
+  
+  <!-- 配置Filter(过滤器) -->
+  <filter>
+  	<filter-name>firstFilter</filter-name>
+  	<filter-class>first.LogFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>firstFilter</filter-name>
+  	<url-pattern>/*</url-pattern><!-- *:拦截所有的请求 -->
+  </filter-mapping>
+  
+  <!-- 配置Servlet -->
+  <servlet>
+  	<servlet-name>firstServlet</servlet-name>
+  	<servlet-class>first.TestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>firstServlet</servlet-name>
+  	<url-pattern>/first</url-pattern>
+  </servlet-mapping>
 </web-app>
