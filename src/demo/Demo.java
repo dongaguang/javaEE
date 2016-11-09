@@ -9,6 +9,8 @@ public class Demo extends ActionSupport{
 	
 	public String execute(){
 		System.out.println("进入后台");
+		System.out.println("进入后台");
+		System.out.println("进入后台");
 		return SUCCESS;
 	}
 	
