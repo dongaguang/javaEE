@@ -12,6 +12,7 @@
 		<action name="myDefault" class="first.DefaultDealClass">
 			<result name="success">index.jsp</result>
 		</action>
+		<!-- *是什么就返回同名字的*.jsp -->
         <action name="*">
         	<result>/WEB-INF/content/{1}.jsp</result>
         </action>
