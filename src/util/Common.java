@@ -8,8 +8,8 @@ package util;
 public class Common {
 	/**
 	 * 斐波那契数列
-	 * @param num
-	 * @return
+	 * @param num 斐波那契数列的第num个数
+	 * @return 这个数对应的斐波那契数字
 	 */
 	private static int fibonacci(int num){
 		int sum = 0;
