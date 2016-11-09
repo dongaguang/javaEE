@@ -10,7 +10,11 @@
 		<!-- 配置默认的ACTION，替代默认的ACTIONSUPPORT类 -->
 		<default-action-ref name="myDefault" />
 		<action name="myDefault" class="first.DefaultDealClass">
-			<result name="success">index.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="login" class="demo.Demo">
+			<result name="success">/index.jsp</result>
+			<result name="input">/WEB-INF/content/loginForm.jsp</result>
 		</action>
 		<!-- *是什么就返回同名字的*.jsp -->
         <action name="*">

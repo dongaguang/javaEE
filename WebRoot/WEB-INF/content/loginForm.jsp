@@ -17,10 +17,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
   </head>
   <body>
-  	<form action="login" method="post">
-  		<input type="text" name="userName" key="user"/>
-  		<input type="text" name="password" key="pass"/>
-  		<input type="submit" value="登陆"/>
+  	<form action="login">
+  		<input type="text" name="userName" />
+  		<input type="text" name="password" />
+  		<input type="submit" value="注册" />
+	  	<s:fielderror>
+	  		<s:param>userName</s:param>
+	  	</s:fielderror>
+	  	<!-- 或者下面这么写 -->
+	  	<s:fielderror fieldName="password" />
   	</form>
+  	<!--<s:form action="login">
+  		<s:textfield name="userName" label="用户名"/>
+  		<s:textfield name="password" label="密码"/>
+  		<s:submit value="注册" />
+  	</s:form> -->
   </body>
 </html>
