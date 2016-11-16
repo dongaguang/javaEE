@@ -10,28 +10,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title><s:text name="loginPage"/> </title>
+    <title>测试文件上传</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="description" content="This is my page">
   </head>
   <body>
-  	<form action="login">
-<<<<<<< HEAD
-  		<input type="text" name="userName"/>
-  		<input type="text" name="passWord"/>
-  		<input type="submit" value="login"/>
-=======
-  		<input type="text" name="userName" />
-  		<input type="text" name="password" />
-  		<input type="submit" value="注册" />
-	  	<s:fielderror>
-	  		<s:param>userName</s:param>
-	  	</s:fielderror>
-	  	<!-- 或者下面这么写 -->
-	  	<s:fielderror fieldName="password" />
->>>>>>> branch 'master' of https://github.com/dongaguang/javaEE.git
+  	<form action="upload" method="post" enctype="multipart/form-data">
+  		<span>文件标题：</span><input type="text" name="title" />
+  		<span>选择文件：</span><input type="file" name="upload" />
+  		<input type="submit" value="上传" />
   	</form>
   	<!--<s:form action="login">
   		<s:textfield name="userName" label="用户名"/>

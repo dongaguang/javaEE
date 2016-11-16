@@ -1,7 +1,6 @@
 package first;
 
 import java.io.PrintStream;
-import java.net.HttpRetryException;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class TestServlet extends HttpServlet{
-	
+	private static final long serialVersionUID = 1L;
+
 	//重写init()方法
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);

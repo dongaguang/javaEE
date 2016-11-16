@@ -6,15 +6,24 @@
 <struts>
 	<constant name="struts.custom.i18n.resources" value="mess"/>
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-
-   <package name="struts" namespace="/" extends="struts-default">
-   		<action name="*">
-   			<result>/WEB-INF/content/{1}.jsp</result>
-   		</action>
-    	<action name="login" class="struts.LoginAction">
-    		<result name="success">/WEB-INF/content/welcome.jsp</result>
-    		<result name="error">/WEB-INF/content/error.jsp</result>
-    	</action>
+    <constant name="struts.multipart.saveDir" value="/tmp"></constant>
+    <package name="crazyit" namespace="/" extends="struts-default">
+		<!-- 配置默认的ACTION，替代默认的ACTIONSUPPORT类 -->
+		<default-action-ref name="myDefault" />
+		<action name="myDefault" class="first.DefaultDealClass">
+			<result name="success">index.jsp</result>
+		</action>
+		<action name="upload" class="upload.UploadAction">
+			<result name="success">/index.jsp</result>
+			<param name="savePath">/upload</param>
+		</action>
+		<action name="login" class="demo.Demo">
+			<result name="success">index.jsp</result>
+			<result name="input">/WEB-INF/content/loginForm.jsp</result>
+		</action>
+		<!-- *是什么就返回同名字的*.jsp -->
+        <action name="*">
+        	<result>/WEB-INF/content/{1}.jsp</result>
+        </action>
     </package>
-    
 </struts>
