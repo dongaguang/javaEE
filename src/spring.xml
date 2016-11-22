@@ -3,5 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="duke" class="spring.service.impl.Juggler"></bean>
+	<bean id="duke" class="spring.service.impl.Juggler">
+		<constructor-arg value="11" />
+	</bean>
 </beans>
