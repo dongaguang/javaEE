@@ -7,4 +7,66 @@
 		<!-- 加上这个参数则使用带参数的构造函数 -->
 		<constructor-arg value="11" />
 	</bean>
+	
+	<bean id="duke1" class="spring.service.impl.PoeticJuggler" autowire="constructor">
+		<!-- 加上这个参数则使用带参数的构造函数 -->
+		<!-- <constructor-arg ref="sonnet" /> -->
+	</bean>
+	
+	<bean id="sonnet" class="spring.service.impl.Sonnet"></bean>
+	
+	<!-- 通过setter()方法实现依赖注入单属性bean -->
+	<bean id="instrumentalist" class="spring.service.impl.Instrumentalist" autowire="byName">
+		<property name="song" value="hahaha"></property>
+		<!-- 显示的把这个属性置为空使用<null/>就行
+			<property name="song" value="hahaha"><null/></property>
+		 -->
+		<!-- name:是使用Instrument类定义的属性名  private Instrument instrument; -->
+<!-- 		<property name="instrument" ref="saxoPhone">
+			在这里定义<bean id="saxoPhone" class="spring.service.impl.SaxoPhone"></bean>
+				那么此时这个bean就是一个内部bean，只能让 instrumentalist使用
+		</property> -->
+	</bean>
+	<bean id="instrument" class="spring.service.impl.SaxoPhone"></bean>
+	<bean id="saxoPhone" class="spring.service.impl.SaxoPhone"></bean>
+	<bean id="guitar" class="spring.service.impl.Guitar"></bean>
+	
+	<!-- spring使用List注入集合bean -->
+	<bean id="oneManBand" class="spring.service.impl.OneManBand">
+		<property name="instruments">
+			<list>
+				<ref bean="saxoPhone"/>
+				<ref bean="guitar"/>
+				<ref bean="guitar"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- spring使用set注入集合bean -->
+	<bean id="oneManBand1" class="spring.service.impl.OneManBand">
+		<property name="instruments">
+			<set>
+				<ref bean="saxoPhone"/>
+				<ref bean="guitar"/>
+				<!-- 使用set方式注入集合bean的时候因为set的元素不能重复，所以最后这个guitar会被忽略掉 -->
+				<ref bean="guitar"/>
+			</set>
+		</property>
+	</bean>
+	
+	<!-- spring使用set注入集合bean -->
+	<bean id="oneManBand2" class="spring.service.impl.OneManBandByMap">
+		<property name="instruments">
+			<map>
+				<!-- 
+					1.key:指定map项的键为String
+					2.key-ref:指定map项的键为Spring上下文中其他bean的引用
+					3.value:指定map项的值为String
+					4.value-ref:指定map项的值为Spring上下文中其他bean的引用
+				 -->
+				<entry key="guitar" value-ref="guitar"></entry>
+				<entry key="saxoPhone" value-ref="saxoPhone"></entry>
+			</map>
+		</property>
+	</bean>
 </beans>

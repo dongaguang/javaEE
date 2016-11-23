@@ -10,8 +10,17 @@ public class SpringTest {
 		try {
 			@SuppressWarnings("resource")
 			ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
-			Performer perform = (Performer)ac.getBean("duke");
+			Performer perform = (Performer)ac.getBean("duke1");
 			perform.perform();
+//			Performer imt = (Performer)ac.getBean("instrumentalist");
+//			imt.perform();
+			
+//			Performer oneManBand = (Performer)ac.getBean("oneManBand");
+//			oneManBand.perform();
+//			Performer oneManBand1 = (Performer)ac.getBean("oneManBand1");
+//			oneManBand1.perform();
+//			Performer oneManBand2 = (Performer)ac.getBean("oneManBand2");
+//			oneManBand2.perform();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
