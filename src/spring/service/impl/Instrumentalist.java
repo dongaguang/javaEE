@@ -8,19 +8,29 @@ import spring.service.Performer;
  * @author 钱多多--董书广
  * @since
  */
-public class Instrumentalist implements Performer {
+public abstract class Instrumentalist implements Performer {
 	private String song;
-	private Instrument instrument;
 	public void setSong(String song) {
 		this.song = song;
 	}
-	public void setInstrument(Instrument instrument) {
-		this.instrument = instrument;
-	}
+	/**
+		1.通过setter()方法实现Spring的依赖注入(DI)
+		public void setInstrument(Instrument instrument) {
+			this.instrument = instrument;
+		}
+		@Override
+		public void perform() throws Exception {
+			System.out.println("playing" + song + ":");
+			instrument.play();
+		}
+		 * 
+	 */
+
+	//2.使用方法注入
+	public abstract Instrument getInstrument();
 	@Override
 	public void perform() throws Exception {
 		System.out.println("playing" + song + ":");
-		instrument.play();
+		getInstrument().play();
 	}
-
 }

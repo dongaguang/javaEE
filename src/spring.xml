@@ -69,4 +69,23 @@
 			</map>
 		</property>
 	</bean>
+	
+	<bean id="magician" class="spring.magic.impl.Magician">
+		<property name="magicWords" value="hahaha"></property>
+		<property name="magicBox" ref="magicBox"></property>
+	</bean>
+	
+	<bean id="magicBox" class="spring.magic.impl.MagicBoxImpl">
+		<!--
+			方法注入：使用了tigerReplacer的reimplement()方法替换了magicBox的getContents()方法
+			tigerReplacer需要实现Spring的MethodReplacer()接口
+		 -->
+		<replaced-method name="getContents" replacer="tigerReplacer" />
+	</bean>
+	<bean id="tigerReplacer" class="spring.magic.impl.TigerReplacer"></bean>
+	
+	<bean id="stevie" class="spring.service.impl.Instrumentalist">
+		<lookup-method name="getInstrument" bean="guitar"/>
+		<property name="song" value="yesterday once more"></property>
+	</bean>
 </beans>
