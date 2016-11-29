@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-	
-	<bean id="duke" class="spring.service.impl.Juggler">
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation=" http://www.springframework.org/schema/beans  
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+       http://www.springframework.org/schema/context  
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<context:annotation-config/>
+	<bean id="dukeTarget" class="spring.service.impl.Juggler">
 		<!-- 加上这个参数则使用带参数的构造函数 -->
 		<constructor-arg value="11" />
 	</bean>
+	<!-- duke的代理 -->
+	<bean id="duke" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="dukeTarget"></property>
+		<property name="interceptorNames" value="performancePointCut"></property>
+		<property name="proxyInterfaces" value="spring.service.Performer"></property>
+	</bean>
 	
-	<bean id="duke1" class="spring.service.impl.PoeticJuggler" autowire="constructor">
-		<!-- 加上这个参数则使用带参数的构造函数 -->
-		<!-- <constructor-arg ref="sonnet" /> -->
+	<!-- 定义正则表达式切点 -->
+	<bean id="performancePointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+		<property name="pattern" value=".*perform" />
+	</bean>
+	
+	<bean name="audience" class="spring.service.impl.Audience"></bean>
+	<bean name="audienceAdvice" class="spring.service.impl.AudienceAdvice">
+		<property name="audience" ref="audience"></property>
 	</bean>
 	
 	<bean id="sonnet" class="spring.service.impl.Sonnet"></bean>
-	
-	<!-- 通过setter()方法实现依赖注入单属性bean -->
-	<bean id="instrumentalist" class="spring.service.impl.Instrumentalist" autowire="byName">
-		<property name="song" value="hahaha"></property>
-		<!-- 显示的把这个属性置为空使用<null/>就行
-			<property name="song" value="hahaha"><null/></property>
-		 -->
-		<!-- name:是使用Instrument类定义的属性名  private Instrument instrument; -->
-<!-- 		<property name="instrument" ref="saxoPhone">
-			在这里定义<bean id="saxoPhone" class="spring.service.impl.SaxoPhone"></bean>
-				那么此时这个bean就是一个内部bean，只能让 instrumentalist使用
-		</property> -->
-	</bean>
 	<bean id="instrument" class="spring.service.impl.SaxoPhone"></bean>
 	<bean id="saxoPhone" class="spring.service.impl.SaxoPhone"></bean>
 	<bean id="guitar" class="spring.service.impl.Guitar"></bean>
@@ -88,4 +90,5 @@
 		<lookup-method name="getInstrument" bean="guitar"/>
 		<property name="song" value="yesterday once more"></property>
 	</bean>
+	
 </beans>
