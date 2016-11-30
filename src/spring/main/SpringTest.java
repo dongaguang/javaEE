@@ -12,8 +12,8 @@ public class SpringTest {
 		try {
 			@SuppressWarnings("resource")
 			ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
-			Audience p = (Audience)ac.getBean("audience");
-			p.setDown();
+			Performer p = (Performer)ac.getBean("duke");
+			p.perform();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

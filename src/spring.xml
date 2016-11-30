@@ -7,20 +7,9 @@
        http://www.springframework.org/schema/context  
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<context:annotation-config/>
-	<bean id="dukeTarget" class="spring.service.impl.Juggler">
+	<bean id="duke" class="spring.service.impl.Juggler">
 		<!-- 加上这个参数则使用带参数的构造函数 -->
 		<constructor-arg value="11" />
-	</bean>
-	<!-- duke的代理 -->
-	<bean id="duke" class="org.springframework.aop.framework.ProxyFactoryBean">
-		<property name="target" ref="dukeTarget"></property>
-		<property name="interceptorNames" value="performancePointCut"></property>
-		<property name="proxyInterfaces" value="spring.service.Performer"></property>
-	</bean>
-	
-	<!-- 定义正则表达式切点 -->
-	<bean id="performancePointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
-		<property name="pattern" value=".*perform" />
 	</bean>
 	
 	<bean name="audience" class="spring.service.impl.Audience"></bean>
